@@ -1,0 +1,9 @@
+<h1>{{category.topic}}</h1>
+<ul>
+    {% for article in articles %}
+    <li><a href="{% url 'article' category.slug_category article.slug_article %} ">{{article.title}}-{{article.level}}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'main' %}">Back</a>
+
+

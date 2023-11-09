@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<h1>{{article.title}}</h1>
+
+    <article>
+      <p>user: {{a}}<p>
+        <br style="max-width: 900px; height:100px;">{{story_.story}}
+    </article>
+
+  <h1> The number of  likes: {{likes_article}}</h1>
+  <h2>Add a new like</h2>
+  <form action="{% url 'likes_article' article.category.slug_category article.slug_article %}" method="post">
+    {% csrf_token %}
+    <p><input type="submit" value="Like"></p>
+  </form>
+
+<a href="{% url 'category' article.category.slug_category %}">Back</a>
+
+{% for comment in comments %}
+  <div class="comment">
+    <p class="info">
+      Comment
+      {{ comment.user.username }}
+    </p>
+    {{ comment.content|linebreaks }}/ create:{{comment.data}}/ the likes of comment:{{comment.likes.count}}
+    <br>
+    {% if comment.user == user %}
+      <a class ="btn btn-sm btn-info" href="{% url 'del_comment' article.category.slug_category article.slug_article comment.pk %}">Delete</a>
+      <a class ="btn btn-sm btn-danger"  href="{% url 'update_comment' article.category.slug_category article.slug_article comment.pk %}">Update</a>
+
+    <h2>Add a new like</h2>
+      <form action="{% url 'likes_comment' article.category.slug_category article.slug_article comment.pk %}" method="post">
+        {% csrf_token %}
+        <p><input type="submit" value="Like"></p>
+      </form>
+      <hr>
+{% endif %}
+   </div>
+
+{% empty %}
+  <p>There are no comments yet.</p>
+{% endfor %}
+
+{% if new_comment %}
+  <h2>Your comment has been added.</h2>
+{% else %}
+  <h2>Add a new comment</h2>
+  <form action="{% url 'create_comment' article.category.slug_category article.slug_article %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <p><input type="submit" value="Add comment"></p>
+  </form>
+{% endif %}
+</html>
+
+
+
+
+<!--            <br/></br>-->
+<!--    <hr>-->
+<!--    <form action="{% url 'likes' article.pk &}"-->
+<!--          method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <button type="submit", name = 'article_id', value="{{article.id}}", class="btn btn-primary btn-sm">Like</button>-->
+<!--    </form>-->
+
+<!--    <style>-->
+<!--        .like-container {-->
+<!--          width: 100%;-->
+<!--          padding-right: 15px;-->
+<!--          padding-left: 15px;-->
+<!--          margin-right: auto;-->
+<!--          margin-left: auto;-->
+<!--        }-->
+<!--        @media (min-width: 768px) {-->
+<!--          .like-container {-->
+<!--            width: 700px;-->
+<!--          }-->
+<!--        }-->
+<!--        @media (min-width: 992px) {-->
+<!--          .like-container {-->
+<!--            width: 970px;-->
+<!--          }-->
+<!--        }-->
+<!--        @media (min-width: 1200px) {-->
+<!--          .like-container {-->
+<!--            width: 1170px;-->
+<!--          }-->
+<!--        }-->
+<!--    </style>-->
+<!--    <div class="like-container">-->
+<!--        <p class="num-of-likes">3</p>-->
+<!--        <form action="" method="Post">-->
+<!--            <button>-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">-->
+<!--                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>-->
+<!--                </svg>-->
+<!--            </button>-->
+<!--        </form>-->
+<!--        <p>like</p>-->
+<!--    </div>-->
