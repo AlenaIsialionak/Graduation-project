@@ -294,7 +294,6 @@ def add_comment(request: HttpResponse, slug_category, slug_article):
 #         return False
 
 
-
 # class DescriptionOfCategory(DetailView):
 #     model = Category
 #     template_name = 'description_of_category.html'
