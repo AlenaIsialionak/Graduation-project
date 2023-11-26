@@ -1,0 +1,46 @@
+h1{color:black;
+    text-align: center;}
+
+.article-text {
+    width: 70%;
+    padding: 30px;
+    font-size: 20px;
+    }
+
+.main-block {
+    background: linear-gradient(to top left, white, Pink);
+    }
+
+
+.list {
+  display: block;
+  margin-left: -30px;
+  counter-increment: item;
+}
+
+
+.list a {
+  position: relative;
+  display: block;
+  padding: .4em .4em .4em .8em;
+  margin: .5em ;
+  background: linear-gradient(45deg, skyblue, pink);
+  color: black;
+  text-decoration: none;
+  width: 50%;
+  padding: 10px;
+  font-size: 20px
+
+}
+
+
+.list a:before {
+  content: '♥';
+  margin-right: 1px;
+  font-size: 30px;
+  color: black;
+
+  font-weight: bold;
+  padding: 3px 1px;
+  border-radius: 1px;
+}

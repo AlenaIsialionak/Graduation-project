@@ -2,19 +2,16 @@
 {%block content%}
     <h1>{{category.topic}}</h1>
       <h2>Choose your level</h2>
-      <form action="{% url 'category' category.slug_category  %}" method="post">
+      <form action="{% url 'sort_article' article.category.slug_category %}" method="post">
         {% csrf_token %}
         {{ form_level }}
         <p><input type="submit" value="Sort"></p>
       </form>
 
     <ul>
-        {% for article in articles %}
-        <li class="list"><a href="{% url 'article' category.slug_category article.slug_article %} ">{{article.title}}-{{article.level}}</a></li>
+        {% for article in sort_articles %}
+        <li><a href="{% url 'article' category.slug_category article.slug_article %} ">{{article.title}}-{{article.level}}</a></li>
         {% endfor %}
     </ul>
     <a href="{% url 'main' %}">Back</a>
-
-    <p>{{level}}</p>
-
 {% endblock %}

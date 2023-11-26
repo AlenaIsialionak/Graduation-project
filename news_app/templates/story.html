@@ -1,57 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<h1>{{article.title}}</h1>
+{% extends 'base.html' %}
+{%block content%}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+  <h1>{{article.title}}</h1>
+      <article class="article-text">
+          <br>{{story_.story}}
+      </article>
 
-    <article>
-      <p>user: {{a}}<p>
-        <br style="max-width: 900px; height:100px;">{{story_.story}}
-    </article>
+    <p> The number of  likes: {{likes_article}}</p>
+    <p>Add a like to article</p>
+    <form action="{% url 'likes_article' article.category.slug_category article.slug_article %}" method="post">
+      {% csrf_token %}
+      <p><input type="submit" value="Like"></p>
+    </form>
 
-  <h1> The number of  likes: {{likes_article}}</h1>
-  <h2>Add a new like</h2>
-  <form action="{% url 'likes_article' article.category.slug_category article.slug_article %}" method="post">
-    {% csrf_token %}
-    <p><input type="submit" value="Like"></p>
-  </form>
+    <p> The number of  dislikes: {{dislikes_article}}</p>
+    <p>Add a dislike to article</p>
+    <form action="{% url 'dislikes_article' article.category.slug_category article.slug_article %}" method="post">
+      {% csrf_token %}
+      <p><input type="submit" value="Dislike"></p>
+    </form>
 
-<a href="{% url 'category' article.category.slug_category %}">Back</a>
 
-{% for comment in comments %}
-  <div class="comment">
-    <p class="info">
-      Comment
-      {{ comment.user.username }}
-    </p>
-    {{ comment.content|linebreaks }}/ create:{{comment.data}}/ the likes of comment:{{comment.likes.count}}
-    <br>
-    {% if comment.user == user %}
-      <a class ="btn btn-sm btn-info" href="{% url 'del_comment' article.category.slug_category article.slug_article comment.pk %}">Delete</a>
-      <a class ="btn btn-sm btn-danger"  href="{% url 'update_comment' article.category.slug_category article.slug_article comment.pk %}">Update</a>
 
-    <h2>Add a new like</h2>
-      <form action="{% url 'likes_comment' article.category.slug_category article.slug_article comment.pk %}" method="post">
-        {% csrf_token %}
-        <p><input type="submit" value="Like"></p>
-      </form>
-      <hr>
-{% endif %}
-   </div>
+  <a href="{% url 'category' article.category.slug_category %}">Back</a>
+  {% if user.is_authenticated %}
+      <h2>Add to my favorite articles </h2>
+        <form action="{% url 'add_favorite_art' article.category.slug_category article.slug_article %}" method="post">
+          {% csrf_token %}
+          <p><input type="submit" value="Add"></p>
+        </form>
+        <a class ="btn btn-sm btn-info"  href="{% url 'add_word_to_dictionary' article.category.slug_category article.slug_article %}">Add word to my dictionary</a>
+        <hr>
 
-{% empty %}
-  <p>There are no comments yet.</p>
-{% endfor %}
+  {% endif %}
 
-{% if new_comment %}
-  <h2>Your comment has been added.</h2>
-{% else %}
-  <h2>Add a new comment</h2>
-  <form action="{% url 'create_comment' article.category.slug_category article.slug_article %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <p><input type="submit" value="Add comment"></p>
-  </form>
-{% endif %}
-</html>
+  {% for comment in comments %}
+    <div class="comment">
+      <p class="info">{{ comment.user.username }}:
+      {{ comment.content|linebreaks }}/ create:{{comment.data}}/ the likes of comment:{{comment.likes.count}}
+      <br>
+      {% if comment.user == user %}
+        <a class ="btn btn-sm btn-info" href="{% url 'del_comment' article.category.slug_category article.slug_article comment.pk %}">Delete</a>
+        <a class ="btn btn-sm btn-danger"  href="{% url 'update_comment' article.category.slug_category article.slug_article comment.pk %}">Update</a>
+      {% endif %}
+
+      <p>Add a new like to comment</p>
+        <form action="{% url 'likes_comment' article.category.slug_category article.slug_article comment.pk %}" method="post">
+          {% csrf_token %}
+          <p><input type="submit" value="Like"></p>
+        </form>
+        <hr>
+     </div>
+
+  {% empty %}
+    <p>There are no comments yet.</p>
+  {% endfor %}
+
+  {% if new_comment %}
+    <h2>Your comment has been added.</h2>
+  {% else %}
+    <h2>Add a new comment</h2>
+    <form action="{% url 'create_comment' article.category.slug_category article.slug_article %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <p><input type="submit" value="Add comment"></p>
+    </form>
+  {% endif %}
+{% endblock %}
 
 
 

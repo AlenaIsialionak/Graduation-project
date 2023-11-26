@@ -5,7 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms.fields import EmailField
 from django.forms.forms import Form
-from news_app.models import Comment
+from news_app.models import Comment, Article, Dictionary, Language
+
+
 
 
 class CommentForm(forms.ModelForm):
@@ -13,18 +15,53 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('content',)
 
+levels = ((1, 'Beginner'),
+          (2, 'Intermediate'),
+          (3, 'Advanced'),
+          (4, 'All')
+          )
+class LevelForm(forms.Form):
+    levels = forms.TypedChoiceField(label='sort', choices=levels,
+                                       coerce=int)
+
+
+class DictionaryForm(forms.ModelForm):
+    class Meta:
+        model = Dictionary
+        fields = ('word',)
+
+
+class LanguageForm(forms.ModelForm):
+    language = forms.ModelChoiceField(queryset=Language.objects.all())
+
+    class Meta:
+        model = Language
+        fields = ('language',)
+
+class TranslationForm(forms.Form):
+    translation = forms.CharField()
+
+
+# class OptionForm(forms.Form):
+#     translations = forms.TypedChoiceField(label='options', choices=options,
+#                                     coerce=int)
 
 
 
 
-
-
-
-
-
-
-
-
+#
+# language =((1, 'belarusian','be'),
+#            (2, 'german', 'de'),
+#            (3, 'polish', 'pl'),
+#            (4, 'french', 'fr'),
+#            (5, 'italian', 'it'),
+#            (6, 'spanish', 'es'),
+#            (7, 'ukrainian', 'uk'),
+#            (8, 'chinese (simplified)', 'zh-cn'),
+#            (9, 'russian', 'ru'),
+#            (10, 'korean', 'ko')
+#
+# )
 
 
 

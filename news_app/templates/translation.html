@@ -1,0 +1,10 @@
+<p>{{lang}}, {{word}}, {{abbr}}</p>
+<h1>Choose language</h1>
+<form action="" method="post">
+{% csrf_token %}
+{{ form_post}}
+<p><input type="submit" value="Translate"></p>
+</form>
+<p> Translation: {{translated_word}}</p>
+<hr>
+<a href="{% url 'my_page' %}">Back</a>

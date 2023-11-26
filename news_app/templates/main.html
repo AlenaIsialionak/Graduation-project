@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block content%}
-    <h1>Learn English</h1>
+    <h1>Learn English by articles</h1>
         <p> Welcome,{% if user.is_authenticated %}{{user.username}}
                     {% else %}guest
                     {% endif %}</p>
@@ -12,7 +12,7 @@
         </p>
 <ul>
     {% for category in object_list %}
-    <li><a href="{% url 'category' category.slug_category %}"> {{category.topic}}-{{category.number}}</a></li>
+    <li class="list"><a href="{% url 'category' category.slug_category %}"> {{category.topic}}-{{category.number}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -1,23 +1,31 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link  rel="stylesheet" href="{% static 'css/style1.css' %}"/>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
-    <h1>My site</h1>
+<body class="back">
+
+    <div class="main-block">
         <a href="{% url 'main' %}">Main</a> /
         <a href="{% url 'signup' %}">Sign up</a>/
         {% if not user.is_authenticated %}
-            <a href="{% url 'login' %}">Log in</a>
+            <a href="{% url 'login' %}">Log in</a>/
         {% else %}
             <a href="{% url 'password_change' %}">Change password</a>/
             <a href="{% url 'logout' %}">Log out</a>
-            <strong> {{user.username}} </strong>
+            <form action="{% url 'my_page' %}" method="post">
+                {% csrf_token %}
+                <p><input class="bi bi-person-circle" type="submit" value="My site"></p>
+            </form>
         {% endif %}
-    <hr>
+        <hr>
+    </div>
     {%block content%}
     {% endblock %}
-
+    <hr>
 </body>
+<p class="page">English by article/ 2023</p>
 </html>

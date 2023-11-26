@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{user.username}}</p>
+    <h1>My favorite articles</h1>
+    <ul>
+        {% for article in favorite_art %}
+        <li class="list"><a href="{% url 'article' article.category.slug_category article.slug_article %} ">{{article.title}}</a></li>
+        {% endfor %}
+    </ul>
+        <h1>My dictionary</h1>
+        {% if not words %}
+            <p>The dictionary is still empty</p>
+        {% else%}
+            <ul class="module">
+                {% for word in words %}
+                <li class="list-of-words"><a class ="btn btn-sm btn-info" href="{% url 'translation' word.pk %}">{{word}}</a></li>
+                    <br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    <br>
+    <a href="{% url 'main' %}">Back</a>
+    <hr>
+    <a href="{% url 'test_language' %}">Verification test</a>
+{% endblock %}
