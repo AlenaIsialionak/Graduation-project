@@ -1,10 +1,17 @@
-<p>{{lang}}, {{word}}, {{abbr}}</p>
-<h1>Choose language</h1>
-<form action="" method="post">
-{% csrf_token %}
-{{ form_post}}
-<p><input type="submit" value="Translate"></p>
-</form>
-<p> Translation: {{translated_word}}</p>
-<hr>
-<a href="{% url 'my_page' %}">Back</a>
+{% extends 'base.html' %}
+
+{%block content%}
+    <a href="{% url 'my_page' %}">Back</a>
+    <h1>Choose language</h1>
+    <p class="text-form-language">The word: {{word}}</p>
+    <form class="form-language" action="" method="post">
+        {% csrf_token %}
+        {{ form_post}}
+        <p><button class="custom-btn btn-6" type="submit"><span>Translate</span></button>
+    </form>
+    <p class="text-form-language"> Translation: {{translated_word}}</p>
+    <hr>
+    <p class="end">English by article/ 2023</p>
+
+{% endblock %}
+

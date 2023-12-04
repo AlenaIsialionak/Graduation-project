@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {%block content%}
     <body>
-        <p>{{language.language}}</p>
-        <h1>TEST</h1>
+        <h1>TEST(language: {{language.language}})</h1>
         {% if not words %}
             <p>This test is not ready yet</p>
         {% else %}
-            <form method="post" action="{% url 'result_test' %}">
+            <form class="form-language" method="post" action="{% url 'result_test' %}">
                 {% csrf_token %}
                 {% for w, options in words.items %}
                     <div class="form-group">
@@ -27,12 +26,12 @@
                 <br>
                 <form action="{% url 'result_test' %}" method="post">
                     {% csrf_token %}
-                    <p><input type="submit" value="Add"></p>
+                    <button class="custom-btn btn-6"><span>Add</span></button>
                 </form>
             </form>
 
 
         {% endif %}
-
+        <p class="end-of-page">English by article/ 2023</p>
     </body>
 {% endblock %}

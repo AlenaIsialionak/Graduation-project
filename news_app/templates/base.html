@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link  rel="stylesheet" href="{% static 'css/style1.css' %}"/>
-    <title>{% block title %}{% endblock %}</title>
+    <link  rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <title>Learn English by articles</title>
+
 </head>
 <body class="back">
 
@@ -15,17 +16,15 @@
             <a href="{% url 'login' %}">Log in</a>/
         {% else %}
             <a href="{% url 'password_change' %}">Change password</a>/
-            <a href="{% url 'logout' %}">Log out</a>
-            <form action="{% url 'my_page' %}" method="post">
-                {% csrf_token %}
-                <p><input class="bi bi-person-circle" type="submit" value="My site"></p>
-            </form>
+            <a href="{% url 'logout' %}">Log out</a>/
+            <a href="{% url 'my_page' %}">{{user.username}}</a>
+
         {% endif %}
         <hr>
     </div>
     {%block content%}
     {% endblock %}
-    <hr>
+
 </body>
-<p class="page">English by article/ 2023</p>
+
 </html>

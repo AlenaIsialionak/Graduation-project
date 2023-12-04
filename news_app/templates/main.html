@@ -2,17 +2,18 @@
 
 {%block content%}
     <h1>Learn English by articles</h1>
-        <p> Welcome,{% if user.is_authenticated %}{{user.username}}
-                    {% else %}guest
-                    {% endif %}</p>
-        <p>Choose articles that are more interesting to you,</p>
-        <p>read and improve your English language level</p>
-        <p>
-            <strong> Total: </strong>{{count}}
-        </p>
+        <div class="welcome">
+            <p> Welcome,{% if user.is_authenticated %}{{user.username}}
+                        {% else %}guest
+                        {% endif %}</p>
+            <p>Choose articles that are more interesting to you,
+            read and improve your English language level</p>
+
+        </div>
 <ul>
     {% for category in object_list %}
     <li class="list"><a href="{% url 'category' category.slug_category %}"> {{category.topic}}-{{category.number}}</a></li>
     {% endfor %}
 </ul>
+<p class="end">English by article/ 2023</p>
 {% endblock %}

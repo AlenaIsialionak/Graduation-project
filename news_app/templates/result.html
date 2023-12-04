@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% block content%}
-    <hr>
-    <h1>Result</h1>
-    <p>Wrong: {{wrong}}</p>
-    <p>Correct: {{correct}}</p>
-    <p>Total: {{total}}</p>
-    <p>Have to be right answers: {{x}}</p>
+    <div class="word-result">Result</div>
+    <div class="result">
+        <p>Wrong: {{wrong}}</p>
+        <p>Correct: {{correct}}</p>
+        <p>Total: {{total}}</p>
+        <p>Сorrect answers:</p>
+        <ul class="result-word">
+            {% for word in x %}
+                <li> {{word}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="end">English by article/ 2023</p>
 {% endblock %}

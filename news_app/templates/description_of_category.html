@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {%block content%}
+    <a href="{% url 'main' %}">Back</a>
     <h1>{{category.topic}}</h1>
       <h2>Choose your level</h2>
-      <form action="{% url 'category' category.slug_category  %}" method="post">
+    <div class="text">
+      <form class="form-language" action="{% url 'category' category.slug_category  %}" method="post">
         {% csrf_token %}
         {{ form_level }}
-        <p><input type="submit" value="Sort"></p>
+        <p class="sort"><input type="submit" value="Sort"></p>
       </form>
+    </div>
 
     <ul>
         {% for article in articles %}
-        <li class="list"><a href="{% url 'article' category.slug_category article.slug_article %} ">{{article.title}}-{{article.level}}</a></li>
+        <li class="list-name"><a href="{% url 'article' category.slug_category article.slug_article %} ">{{article.title}}-{{article.level}}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'main' %}">Back</a>
+    <hr>
+    <p class="end">English by article/ 2023</p>
 
-    <p>{{level}}</p>
 
 {% endblock %}
+

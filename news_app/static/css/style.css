@@ -64,12 +64,31 @@ body {background: white}
     }
 
 
-.module {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 4em;
+ul.hr {
+    margin:0;
+    padding: 4px;
 }
+
+ul.hr li {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    counter-increment: item;
+    font-size: 1.1em;
+    font-family: 'Playfair Display', serif;
+}
+
+ul.hr li a{
+    color: blue;
+}
+
+ul.hr li a:before {
+  content: counter(item)'.' ;
+  font-size: 1.1em;
+  color: black
+
+}
+
 
 .buttons .line {
     display: inline-block;
@@ -120,10 +139,9 @@ a {
     padding: 0;
     margin: 0;
     margin-left: 10px;
-    color: red;
+    color: black;
     font-size: 1.1em;
-    border: 1.5px solid black;
-    border-radius: 5px;
+
     }
 
 .comment form{
@@ -138,7 +156,10 @@ a {
 
 
 .comment li {
-    margin-top: -20px;
+    margin-top: 10px;
+    padding-left: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
     }
 
 
@@ -281,28 +302,6 @@ a {
   content: '♥';
 }
 
-.list-of-words  {
-  display: block;
-  margin-left: -30px;
-  margin-right: 3px;
-  counter-increment: item;
-  font-size: 1.em;
-
-}
-
-.list-of-words a{
-    color: blue;
-}
-
-.list-of-words a:before {
-  content: counter(item)'.' ;
-  margin-right: 1px;
-  color: black;
-  font-weight: bold;
-  padding: 2px 1px;
-  font-size: 1.em;
-  max-width: 10px;
-}
 
 .list-name {
   display: block;

@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.MainView.as_view(), name='main'),
     path('signup', views.sign_up, name='signup'),
     path('my_page', views.get_favorite_article, name='my_page'),
+    path('my_page/delete/<slug:slug_article>', views.delete_favorite_article, name='delete_favorite_article'),
     path('my_page/test_language', views.get_test_language, name='test_language'),
     path('my_page/result', views.get_test, name='result_test'),
     path('my_page/translate/<int:pk>', views.translate_word, name='translation'),

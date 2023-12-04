@@ -1,117 +1,99 @@
 {% extends 'base.html' %}
 {%block content%}
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+<a href="{% url 'category' article.category.slug_category %}">Back</a>
   <h1>{{article.title}}</h1>
       <article class="article-text">
-          <br>{{story_.story}}
+          {{story_.story}}
       </article>
 
-    <p> The number of  likes: {{likes_article}}</p>
-    <p>Add a like to article</p>
-    <form action="{% url 'likes_article' article.category.slug_category article.slug_article %}" method="post">
-      {% csrf_token %}
-      <p><input type="submit" value="Like"></p>
-    </form>
-
-    <p> The number of  dislikes: {{dislikes_article}}</p>
-    <p>Add a dislike to article</p>
-    <form action="{% url 'dislikes_article' article.category.slug_category article.slug_article %}" method="post">
-      {% csrf_token %}
-      <p><input type="submit" value="Dislike"></p>
-    </form>
-
-
-
-  <a href="{% url 'category' article.category.slug_category %}">Back</a>
   {% if user.is_authenticated %}
-      <h2>Add to my favorite articles </h2>
-        <form action="{% url 'add_favorite_art' article.category.slug_category article.slug_article %}" method="post">
-          {% csrf_token %}
-          <p><input type="submit" value="Add"></p>
-        </form>
-        <a class ="btn btn-sm btn-info"  href="{% url 'add_word_to_dictionary' article.category.slug_category article.slug_article %}">Add word to my dictionary</a>
-        <hr>
+    <div class="buttons">
+      <form class="line" action="{% url 'likes_article' article.category.slug_category article.slug_article %}" method="post">
+        {% csrf_token %}
+        <p class="b"><button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+          </svg>
+        </button>: {{likes_article}}</p>
+      </form>
+      <form action="{% url 'dislikes_article' article.category.slug_category article.slug_article %}" method="post">
+        {% csrf_token %}
+        <p><button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heartbreak" viewBox="0 0 16 16">
+            <path d="M8.867 14.41c13.308-9.322 4.79-16.563.064-13.824L7 3l1.5 4-2 3L8 15a38.094 38.094 0 0 0 .867-.59m-.303-1.01-.971-3.237 1.74-2.608a1 1 0 0 0 .103-.906l-1.3-3.468 1.45-1.813c1.861-.948 4.446.002 5.197 2.11.691 1.94-.055 5.521-6.219 9.922Zm-1.25 1.137a36.027 36.027 0 0 1-1.522-1.116C-5.077 4.97 1.842-1.472 6.454.293c.314.12.618.279.904.477L5.5 3 7 7l-1.5 3 1.815 4.537Zm-2.3-3.06-.442-1.106a1 1 0 0 1 .034-.818l1.305-2.61L4.564 3.35a1 1 0 0 1 .168-.991l1.032-1.24c-1.688-.449-3.7.398-4.456 2.128-.711 1.627-.413 4.55 3.706 8.229Z"/>
+          </svg>
+        </button>: {{dislikes_article}}</p>
+      </form>
+      <a class ="add"  href="{% url 'add_word_to_dictionary' article.category.slug_category article.slug_article %}">Add word to my dictionary</a>
+    </div>
 
+
+      <p class="x">Add to my favorite articles </p>
+        <form class='favorite'action="{% url 'add_favorite_art' article.category.slug_category article.slug_article %}" method="post">
+          {% csrf_token %}
+          <p><button class="favorite-btn" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+            </svg>
+          </button><p>
+        </form>
   {% endif %}
 
-  {% for comment in comments %}
-    <div class="comment">
-      <p class="info">{{ comment.user.username }}:
-      {{ comment.content|linebreaks }}/ create:{{comment.data}}/ the likes of comment:{{comment.likes.count}}
-      <br>
-      {% if comment.user == user %}
-        <a class ="btn btn-sm btn-info" href="{% url 'del_comment' article.category.slug_category article.slug_article comment.pk %}">Delete</a>
-        <a class ="btn btn-sm btn-danger"  href="{% url 'update_comment' article.category.slug_category article.slug_article comment.pk %}">Update</a>
-      {% endif %}
 
-      <p>Add a new like to comment</p>
-        <form action="{% url 'likes_comment' article.category.slug_category article.slug_article comment.pk %}" method="post">
+
+  <p class="word-comments">Comments</p>
+  <ul class="comment">
+    {% for comment in comments %}
+      <li><p class="info">{{ comment.user.username }}:
+        {{ comment.content|linebreaks }} create:{{comment.data}}<br>
+
+        <form class="com-form" action="{% url 'likes_comment' article.category.slug_category article.slug_article comment.pk %}" method="post">
           {% csrf_token %}
-          <p><input type="submit" value="Like"></p>
+          <p><button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill"
+                 viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+            </svg>
+          </button>: {{comment.likes.count}}</p>
         </form>
-        <hr>
-     </div>
+        {% if comment.user == user %}
+          <div class="btn">
+            <a href="{% url 'del_comment' article.category.slug_category article.slug_article comment.pk %}">Delete</a>
+            <a href="{% url 'update_comment' article.category.slug_category article.slug_article comment.pk %}">Update</a>
+          </div>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="empty"><p>There are no comments yet.</p></li>
+    {% endfor %}
+  </ul>
 
-  {% empty %}
-    <p>There are no comments yet.</p>
-  {% endfor %}
+
+
 
   {% if new_comment %}
     <h2>Your comment has been added.</h2>
   {% else %}
-    <h2>Add a new comment</h2>
-    <form action="{% url 'create_comment' article.category.slug_category article.slug_article %}" method="post">
-      {% csrf_token %}
-      {{ form }}
-      <p><input type="submit" value="Add comment"></p>
-    </form>
+    {% if user.is_authenticated %}
+      <form action="{% url 'create_comment' article.category.slug_category article.slug_article %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="custom-btn btn-6" type="submit"><span>Comment</span></button>
+      </form>
+    {% endif %}
   {% endif %}
+  <p class="end-of-page">English by article/ 2023</p>
 {% endblock %}
 
 
 
 
-<!--            <br/></br>-->
-<!--    <hr>-->
-<!--    <form action="{% url 'likes' article.pk &}"-->
-<!--          method="POST">-->
-<!--        {% csrf_token %}-->
-<!--        <button type="submit", name = 'article_id', value="{{article.id}}", class="btn btn-primary btn-sm">Like</button>-->
-<!--    </form>-->
 
-<!--    <style>-->
-<!--        .like-container {-->
-<!--          width: 100%;-->
-<!--          padding-right: 15px;-->
-<!--          padding-left: 15px;-->
-<!--          margin-right: auto;-->
-<!--          margin-left: auto;-->
-<!--        }-->
-<!--        @media (min-width: 768px) {-->
-<!--          .like-container {-->
-<!--            width: 700px;-->
-<!--          }-->
-<!--        }-->
-<!--        @media (min-width: 992px) {-->
-<!--          .like-container {-->
-<!--            width: 970px;-->
-<!--          }-->
-<!--        }-->
-<!--        @media (min-width: 1200px) {-->
-<!--          .like-container {-->
-<!--            width: 1170px;-->
-<!--          }-->
-<!--        }-->
-<!--    </style>-->
-<!--    <div class="like-container">-->
-<!--        <p class="num-of-likes">3</p>-->
-<!--        <form action="" method="Post">-->
-<!--            <button>-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">-->
-<!--                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>-->
-<!--                </svg>-->
-<!--            </button>-->
-<!--        </form>-->
-<!--        <p>like</p>-->
-<!--    </div>-->
+
+
+
+
+
+
+

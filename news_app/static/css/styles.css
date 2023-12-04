@@ -1,46 +1,410 @@
-h1{color:black;
-    text-align: center;}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 .article-text {
-    width: 70%;
-    padding: 30px;
-    font-size: 20px;
+    color: black;
+    text-align: center;
+    font-size: 1.9em;
+    font-style: normal;
+    font-family: 'Playfair Display', serif;
+    width: 85%;
+    margin-left: 100px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    background: linear-gradient(to top right, #bbdefb , white);
+
+}
+
+
+.welcome {color:black;
+    text-align: normal;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    text-align: center;}
+
+
+h1{color:black;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 2.3em;}
+
+.choose-language {
+    text-align: absolute;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.9em;}
+}
+
+h2{color:black;;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    margin: 0px;
+
     }
+
+body {background: white}
+
 
 .main-block {
-    background: linear-gradient(to top left, white, Pink);
+    background: linear-gradient(to top right, #bbdefb , white);
     }
 
+.end-of-page {
+    padding: 15px;
+    height: 2em;
+    background: linear-gradient(to top right, #bbdefb , white);
+    color: black;
+    width: 100%;
+    }
+
+.end {
+    position: fixed;
+    left: 0; bottom: 0;
+    padding: 15px;
+    height: 2em;
+    background: linear-gradient(to top right, #bbdefb , white);
+    color: black;
+    width: 100%;
+    }
+
+
+.module {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 4em;
+}
+
+.buttons form {
+    display: inline-block;
+    margin-bottom: -30px;
+    margin-right:15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    }
+
+.b {
+    margin-left: 10px;
+    margin
+    }
+
+.add {
+    margin-left: 40px;
+}
+
+.buttons form p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1em;
+    }
+
+.text p, form{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    display: inline-block;
+    }
+
+
+a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    display: inline-block;
+    }
+
+.comment .btn {
+    display: inline;
+    font-size: 0.6em;
+    }
+
+.comment .btn form {
+   margin: 0.5px;
+   color: black;
+   font-size: 1.5em;
+   margin-left: -50px;
+    }
+
+
+.comment {
+    font-family: 'Playfair Display', serif;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    color: black;
+    font-size: 1.1em;
+    }
+
+.comment li {
+    margin-top: -20px;
+
+    }
+
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: black;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9em;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-weight: 500;
+  background: linear-gradient(45deg, #bbdefb, white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.btn-6 {
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-6 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-6:before,
+.btn-6:after {
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 1px;
+ box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+
+.btn-6:before {
+  right: 0;
+  top: 0;
+  transition: all 500ms ease;
+}
+
+.btn-6:after {
+  left: 0;
+  bottom: 0;
+  transition: all 500ms ease;
+}
+
+.btn-6 span:before,
+
+.btn-6 span:after {
+  position: absolute;
+  content: "";
+  box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+.btn-6 span:before {
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+
+.btn-6 span:after {
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+
+.btn-6:hover{
+  background: white;
+  color: black;
+  box-shadow: none;
+  border: 1px solid black;
+
+}
+
+.comment-form {
+    width: 500px;
+    height: 50px;
+    background: linear-gradient(45deg, #bbdefb, white);
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+    }
+
+#fav {
+    display: flex;
+}
+
+.list {
+    width: 50%;
+    background: linear-gradient(45deg, #bbdefb, white);
+    }
 
 .list {
   display: block;
   margin-left: -30px;
+  margin-bottom: 3px;
   counter-increment: item;
+  width:40%;
+  max-width: 500px;
 }
 
 
 .list a {
   position: relative;
   display: block;
-  padding: .4em .4em .4em .8em;
-  margin: .5em ;
-  background: linear-gradient(45deg, skyblue, pink);
+  margin: .3em ;
+  background: linear-gradient(45deg, #bbdefb, white);
   color: black;
   text-decoration: none;
-  width: 50%;
   padding: 10px;
-  font-size: 20px
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9em;
 
 }
-
 
 .list a:before {
   content: '♥';
-  margin-right: 1px;
-  font-size: 30px;
-  color: black;
-
-  font-weight: bold;
-  padding: 3px 1px;
-  border-radius: 1px;
 }
+
+.list-of-words  {
+  display: block;
+  margin-left: -30px;
+  margin-right: 3px;
+  counter-increment: item;
+  font-size: 1.em;
+
+}
+
+.list-of-words a{
+    color: blue;
+}
+
+.list-of-words a:before {
+  content: counter(item)'.' ;
+  margin-right: 1px;
+  color: black;
+  font-weight: bold;
+  padding: 2px 1px;
+  font-size: 1.em;
+  max-width: 10px;
+}
+
+.list-name {
+  display: block;
+  margin-left: -30px;
+  margin-bottom: 3px;
+  counter-increment: item;
+  width:70%;
+}
+
+
+.list-name a {
+  position: relative;
+  display: block;
+  margin: .3em ;
+  background: linear-gradient(45deg, #bbdefb, white);
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9em;
+}
+
+.list-name a:before {
+  content: '♥';
+}
+
+
+.result {
+    border: 3px solid black;
+    border-radius: 5px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    width:30%;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.result-word {
+    margin-top: -20px;
+}
+
+.result-word li {
+    display: block;
+    margin-left: -30px;
+    margin-right: 3px;
+    counter-increment: item;
+    font-size: 1.em;
+}
+
+.result-word li:before {
+    content: counter(item)'.' ;
+}
+
+.word-result{
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.9em;
+    margin-left: 240px;
+
+}
+
+.comment {
+    margin-top: -20px;
+    width: 50%;
+}
+
+.comment li {
+    display: block;
+    margin-left: 10px;
+    margin-right: 3px;
+    font-size: 1.3em;
+}
+
+.comment li:before {
+    content: '';
+}
+
+.word-comments {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.9em;
+    margin-left: 150px;
+}
+
+.my-page {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.9em;
+    text-align: center;
+}
+
+.empty {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    color: red;
+    margin-left: 30px;
+}
+
+.delete {
+    color: blue;
+    margin-top: 35px;
+    margin-left: 30px;
+
+    }
+
+
+

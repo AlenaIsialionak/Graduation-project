@@ -142,13 +142,11 @@ def like_comment(request: HttpResponse, slug_category, slug_article, pk: int):
     return redirect('article', slug_category, slug_article)
 
 
-def search_for_article(request):
-    pass
-
 
 def _get_story(art):
     story = art.content
     return story
+
 
 def _add_comment(comment_data: dict):
     comment_form = CommentForm(data=comment_data)
@@ -162,16 +160,6 @@ def _add_comment(comment_data: dict):
         )
     comment_form = CommentForm()
     return comment_form
-
-# def _update_comment(comment_data: dict, pk: int, comment_form):
-#
-#     if comment_form.is_valid():
-#         comment_dict = Comment.objects.filter(pk=pk).update(
-#             content=comment_data.get('content'),
-#             data=comment_data.get('data')
-#         )
-#     comment_form = CommentForm()
-#     return comment_form
 
 
 def update_comment(request: HttpResponse, slug_category, slug_article, pk: int ):
@@ -271,6 +259,7 @@ def add_comment(request: HttpResponse, slug_category, slug_article):
             'user': request.user
         }
         comment_form = _add_comment(comment_data)
+        return redirect('article', slug_category, slug_article)
     else:
         comment_form = CommentForm()
 
@@ -290,7 +279,6 @@ def add_favorite_article(request, slug_article, slug_category):
     user_ = request.user
     if request.method == 'POST':
         art.user.add(user_)
-
     return redirect('article', slug_category, slug_article)
 
 
@@ -320,10 +308,18 @@ def add_word_to_dictionary(request, slug_article, slug_category):
                  })
 
 
+
+def delete_favorite_article(request:HttpResponse, slug_article):
+    user_ = request.user
+    article = get_object_or_404(Article, slug_article=slug_article)
+    article.user.remove(user_)
+    return redirect('my_page')
+
+
 def get_favorite_article(request):
     user_ = request.user
     favorite_art = [name for name in user_.favorite_art.all()]
-    words = [word for word in user_.words.all()]
+    words = [word for word in user_.words.all().order_by('word')]
 
     return render(
         request,
@@ -469,6 +465,9 @@ def get_test_language(request: HttpResponse):
     form_language = LanguageForm(request.POST or None)
 
     if request.method == 'POST' and form_language.is_valid():
+        amount_dict_ = Dictionary.objects.filter(user=request.user).count()
+        if amount_dict_ < 3:
+            return redirect('my_page')
         lang = form_language.cleaned_data.get('language')
         lang_object = Language.objects.get(language=lang)
         user = request.user
@@ -571,11 +570,17 @@ def get_test_language(request: HttpResponse):
 #     template_name = 'description_of_category.html'
 
 #
-# art = Article.objects.create(slug_article='dog_age', title="Researchers Find Better Way to Calculate Dog Age",
+
+# art = Article.objects.create(slug_article='baseball', title="Japan Defeats USA in World Baseball Classic Final",
 #                              category=cat,
 #                              level='Advanced')
-#
 
 # Beginner
 # Advanced
 # Intermediate
+
+# from django.contrib.auth.models import User
+# from news_app.models import (Article, Content, Category,
+#                              Comment, LikeArticle, Dictionary,
+#                              Language, Translation, DislikeArticle,
+#                              Test)

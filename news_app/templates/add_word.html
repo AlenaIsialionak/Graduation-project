@@ -1,6 +1,15 @@
+{% extends 'base.html' %}
+
+{%block content%}
 <h1>Add a word to your dictionary</h1>
-    <form action="" method="post">
+
+    <form class="form-language" action="" method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-    <input type="submit" value="Add word" />
-</form>
+      {{ form }}
+      <button class="custom-btn btn-6" type="submit"><span>Add</span></button>
+    </form>
+
+<hr>
+<p class="end">English by article/ 2023</p>
+
+{% endblock %}

@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>{{user.username}}</p>
-    <h1>My favorite articles</h1>
-    <ul>
-        {% for article in favorite_art %}
-        <li class="list"><a href="{% url 'article' article.category.slug_category article.slug_article %} ">{{article.title}}</a></li>
-        {% endfor %}
-    </ul>
-        <h1>My dictionary</h1>
-        {% if not words %}
-            <p>The dictionary is still empty</p>
-        {% else%}
-            <ul class="module">
-                {% for word in words %}
-                <li class="list-of-words"><a class ="btn btn-sm btn-info" href="{% url 'translation' word.pk %}">{{word}}</a></li>
-                    <br>
-                {% endfor %}
-            </ul>
-        {% endif %}
+<a href="{% url 'main' %}">Back</a>
+    <p class="my-page">My favorite articles</p>
+    {% if not favorite_art %}
+        <p class="empty">You don't have a favorite article yet.</p>
+    {% else%}
+        <ul>
+            {% for article in favorite_art %}
+                <li id="fav">
+                    <div class="list">
+                        <a href="{% url 'article' article.category.slug_category article.slug_article %} ">
+                        {{article.title}}</a>
+                    </div>
+                    <a class="delete" href="{% url 'delete_favorite_article' article.slug_article %}">Delete</a>
+                </li>
+
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <p class="my-page">My dictionary</p>
+    {% if not words %}
+        <p class="empty">The dictionary is still empty</p>
+    {% else%}
+        <ul class="hr">
+            {% for word in words %}
+                <li><a  href="{% url 'translation' word.pk %}">{{word}}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <br>
-    <a href="{% url 'main' %}">Back</a>
     <hr>
-    <a href="{% url 'test_language' %}">Verification test</a>
+    <a class="delete" href="{% url 'test_language' %}">Verification test</a>
+    <p class="empty">There should be at least three words in your dictionary for the verification test.</p>
+    <p class="end-of-page">English by article/ 2023</p>
 {% endblock %}
