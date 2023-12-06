@@ -4,8 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from news_app.models import (Article, Content, Category,
                              Comment, LikeArticle, Dictionary,
-                             Language, Translation, DislikeArticle,
-                             Test)
+                             Language, Translation, DislikeArticle)
 import random
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
