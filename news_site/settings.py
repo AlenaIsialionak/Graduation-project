@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.environ.get('DESECRET_KEY')
 # DEBUG = int(os.environ.get('DEBUG', default=0))
 # ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
-
+# #
 SECRET_KEY = 'django-insecure-2nq7gbn*-8bv54z!)mwkh1ppdt@@9fcfcwks2t8v%0*x0qqu^5'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -57,8 +57,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'news_site.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get('POSTGRES_DB'),
+#         'USER': os.environ.get('POSTGRES_USER'),
+#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -70,6 +78,9 @@ DATABASES = {
         'PORT': '5432'
     }
 }
+
+
+
 
 # DATABASES = {
 #     'default': {
@@ -123,3 +134,4 @@ LOGIN_REDIRECT_URL = 'main'
 LOGOUT_REDIRECT_URL = 'main'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+

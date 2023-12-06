@@ -1,17 +1,16 @@
-FROM python:3.11.4-alpine
+FROM python:3.11-bullseye
 
 ENV PYTHONUNBUFFERED 1
 
-RUN pip install --upgrade pip
-
-ADD requirements.txt /news_site/
 WORKDIR /news_site
 
-COPY requirements.txt .
-
-
+COPY requirements.txt /news_site/
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY entrypoint.sh /news_site/entrypoint.sh
+COPY . /news_site/
 
-CMD ["python", "./manage.py", "runserver",  "0.0.0.0:8000"]
+#CMD ["python", "manage.py", "migrate"]
+ENTRYPOINT ["/news_site/entrypoint.sh"]
+
+

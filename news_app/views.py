@@ -239,11 +239,12 @@ def get_story_and_comments(request: HttpResponse, slug_category, slug_article):
                  'amount_of_comments': amount_of_comments})
 
 
-def delete_comment(request: HttpResponse, pk: int, slug_category, slug_article):
-    comment = get_object_or_404(Comment, id=pk)
-    art_pk = comment.article.pk
-    comment.delete()
-    return redirect('article', slug_category, slug_article)
+
+# def delete_comment(request: HttpResponse, pk: int, slug_category, slug_article):
+#     comment = get_object_or_404(Comment, id=pk)
+#     art_pk = comment.article.pk
+#     comment.delete()
+#     return redirect('article', slug_category, slug_article)
 
 
 def add_comment(request: HttpResponse, slug_category, slug_article):
