@@ -141,7 +141,6 @@ def like_comment(request: HttpResponse, slug_category, slug_article, pk: int):
     return redirect('article', slug_category, slug_article)
 
 
-
 def _get_story(art):
     story = art.content
     return story
@@ -238,19 +237,10 @@ def get_story_and_comments(request: HttpResponse, slug_category, slug_article):
                  'amount_of_comments': amount_of_comments})
 
 
-
-# def delete_comment(request: HttpResponse, pk: int, slug_category, slug_article):
-#     comment = get_object_or_404(Comment, id=pk)
-#     art_pk = comment.article.pk
-#     comment.delete()
-#     return redirect('article', slug_category, slug_article)
-
-
 def add_comment(request: HttpResponse, slug_category, slug_article):
     art = get_object_or_404(Article, slug_article=slug_article)
     comments = art.comments.all()
 
-    # Add comment
     if request.method == 'POST':
         comment_data = {
             'content': request.POST.get('content'),
@@ -307,8 +297,6 @@ def add_word_to_dictionary(request, slug_article, slug_category):
                  'slug_article': slug_article,
                  })
 
-
-
 def delete_favorite_article(request:HttpResponse, slug_article):
     user_ = request.user
     article = get_object_or_404(Article, slug_article=slug_article)
@@ -341,6 +329,7 @@ def _translate(word, language):
                                translation=translated_word,
                                language=language)
 
+
 def translate_word(request, pk):
     user_ = request.user
     word_ = get_object_or_404(Dictionary, pk=pk)
@@ -356,7 +345,6 @@ def translate_word(request, pk):
             _translate(word_, lang_object)
         translated_word = word_.translations.get(language=lang_object)
 
-
     return render(
         request,
         'translation.html',
@@ -367,6 +355,7 @@ def translate_word(request, pk):
                  'abbr': abbr
                  }
     )
+
 
 class VerificationTest:
     def __init__(self,  user=None, language=None, status=None):
@@ -381,7 +370,6 @@ class VerificationTest:
         if not word_.translations.filter(language=self.language):
             _translate(word_, self.language)
         translation_ = word_.translations.get(language=self.language)
-        # options.append(translation_)
         return translation_
 
 
@@ -420,6 +408,7 @@ class VerificationTest:
 
         return words
 
+
     def get_result(self, request):
         wrong = 0
         correct = 0
@@ -441,13 +430,11 @@ class VerificationTest:
         return wrong, correct, total, x
 
 
-
 def get_test(request: HttpResponse):
     if request.method == 'POST':
         result = VerificationTest()
         result = result.get_result(request)
         wrong, correct, total, x = result
-
 
     return render(
         request,
@@ -457,7 +444,6 @@ def get_test(request: HttpResponse):
                  'total': total,
                  'x': x}
     )
-
 
 
 def get_test_language(request: HttpResponse):
@@ -473,7 +459,6 @@ def get_test_language(request: HttpResponse):
         user = request.user
         words = VerificationTest(user=user, language=lang)
         words = words.get_question_of_words()
-
 
         return render(request,
                       'test.html',
@@ -496,91 +481,3 @@ def get_test_language(request: HttpResponse):
 
 
 
-# def sign_in(request: HttpRequest):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return render(
-#                 request,
-#                 'user_forms.html',
-#                 context={'form': form}
-#             )
-
-
-# def get_story_and_add_comment(request: HttpResponse, slug_category, slug_article):
-#     art = get_object_or_404(Article, slug_article=slug_article)
-#     comments = art.comments.all()
-#
-#     # Add comment
-#     if request.method == 'POST':
-#         comment_data = {
-#             'content': request.POST.get('content'),
-#             'data': request.POST.get('data'),
-#             'article': art,
-#             'user': request.user
-#         }
-#         comment_form = _add_comment(comment_data)
-#     else:
-#         comment_form = CommentForm()
-#
-#     # Get story
-#     story = _get_story(art)
-#     return render(
-#         request,
-#         'story.html',
-#         context={'story_': story,
-#                  'article': art,
-#                  'form': comment_form,
-#                  'comments': comments,
-#                  'slug_category': slug_category})
-
-
-
-
-# def get_update_comment(request: HttpResponse, comment_id: int):
-# class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = Comment
-#     template_name = 'story.html'
-#     form_class = CommentForm
-#
-#     def form_valid(self, form):
-#         comment = get_object_or_404(Comment, id=self.kwargs['pk'])
-#         form.instance.user = self.request.user
-#         form.instanse.comment = comment
-#         return super().form_valid(form)
-#
-#     def form_invalid(self, form):
-#         return HttpResponseRedirect(self.get_success_url())
-#
-#     def get_success_url(self):
-#         slug_category = self.kwargs['slug_category']
-#         slug_article = self.kwargs['slug_article']
-#         return redirect('main')
-#
-#     def test_func(self):
-#         comment = self.get_object()
-#         if self.request.user == comment.user:
-#             return True
-#         return False
-
-
-# class DescriptionOfCategory(DetailView):
-#     model = Category
-#     template_name = 'description_of_category.html'
-
-#
-
-# art = Article.objects.create(slug_article='baseball', title="Japan Defeats USA in World Baseball Classic Final",
-#                              category=cat,
-#                              level='Advanced')
-
-# Beginner
-# Advanced
-# Intermediate
-
-# from django.contrib.auth.models import User
-# from news_app.models import (Article, Content, Category,
-#                              Comment, LikeArticle, Dictionary,
-#                              Language, Translation, DislikeArticle,
-#                              Test)

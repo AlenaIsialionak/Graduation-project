@@ -11,7 +11,6 @@ urlpatterns = [
     path('my_page/result', views.get_test, name='result_test'),
     path('my_page/translate/<int:pk>', views.translate_word, name='translation'),
     path('<slug:slug_category>', views.get_article, name='category'),
-    # path('<slug:slug_category>/sort', views.get_sort_article, name='sort_article'),
     path('<slug:slug_category>/<slug:slug_article>', views.get_story_and_comments, name='article'),
     path('<slug:slug_category>/<slug:slug_article>/create_comment', views.add_comment, name='create_comment'),
     path('<slug:slug_category>/<slug:slug_article>/delete/<int:pk>', views.delete_comment, name='del_comment'),

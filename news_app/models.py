@@ -89,13 +89,3 @@ class Test(models.Model):
 
 
 
-
-
-# class LikeComment(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes_comment')
-#     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='likes_comment')
-#
-#
-# class DislikeComment(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes_comment')
-#     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='likes_comment')
