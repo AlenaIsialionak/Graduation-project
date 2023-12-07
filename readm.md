@@ -21,7 +21,6 @@ docker run -p 8000:8000 --name django_container django_img
 docker exec -ti levenshtein_container pytest levenshtein_service/tests
 ```
 
-
 ## Usage example:
 
 ```bash

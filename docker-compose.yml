@@ -15,7 +15,6 @@ services:
     ports:
       - "5432:5432"
 
-
   web:
     build: .
     container_name: web_container
