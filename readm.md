@@ -17,8 +17,6 @@ $ python manage.py runserver
 docker build -t django_img .
 # Run the Docker container from image 
 docker run -p 8000:8000 --name django_container django_img
-# Run the tests
-docker exec -ti levenshtein_container pytest levenshtein_service/tests
 ```
 
 ## Usage example:
