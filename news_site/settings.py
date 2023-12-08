@@ -67,15 +67,16 @@ WSGI_APPLICATION = "news_site.wsgi.application"
 #     }
 # }
 
+
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ["DATABASE_NAME"],
-            'USER': os.environ["DATABASE_USER"],
-            'PASSWORD': os.environ["DATABASE_PASSWORD"],
-            'HOST': os.environ['DATABASE_HOST'],
-            'PORT': os.environ['DATABASE_PORT'],
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("DATABASE_NAME", 'news_app'),
+        'USER': os.getenv("DATABASE_USER", 'django_user'),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD", '123456789'),
+        'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
+    }
 }
 
 
