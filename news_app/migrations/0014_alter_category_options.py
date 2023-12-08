@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0013_alter_article_slug_article'),
+        ("news_app", "0013_alter_article_slug_article"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'default_related_name': 'categories'},
+            name="category",
+            options={"default_related_name": "categories"},
         ),
     ]

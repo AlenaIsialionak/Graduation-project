@@ -5,7 +5,6 @@ import functools
 
 def query_debugger(logger):
     def wrapper(func):
-
         print("Hello from decorator!")
 
         @functools.wraps(func)

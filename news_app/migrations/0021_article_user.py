@@ -5,16 +5,17 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news_app', '0020_comment_likes_delete_likecomment'),
+        ("news_app", "0020_comment_likes_delete_likecomment"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='user',
-            field=models.ManyToManyField(related_name='favourite_art', to=settings.AUTH_USER_MODEL),
+            model_name="article",
+            name="user",
+            field=models.ManyToManyField(
+                related_name="favourite_art", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

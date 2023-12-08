@@ -4,21 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.IntegerField(auto_created=True, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=20)),
-                ('age', models.IntegerField()),
-                ('gender', models.CharField(max_length=6)),
-                ('nationality', models.TextField()),
+                (
+                    "id",
+                    models.IntegerField(
+                        auto_created=True, primary_key=True, serialize=False
+                    ),
+                ),
+                ("name", models.CharField(max_length=20)),
+                ("age", models.IntegerField()),
+                ("gender", models.CharField(max_length=6)),
+                ("nationality", models.TextField()),
             ],
         ),
     ]

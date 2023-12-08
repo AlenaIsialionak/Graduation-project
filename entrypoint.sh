@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Apply database migrations
-python manage.py migrate
+echo "Apply database migrations"
 
-# Start the Django development server
-python manage.py runserver 0.0.0.0:8000
+python ./src/manage.py makemigrations
+python ./src/manage.py migrate
+python ./src/manage.py makemigrations news_app
+python ./src/manage.py migrate

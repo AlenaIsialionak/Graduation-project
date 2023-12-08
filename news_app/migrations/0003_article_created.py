@@ -5,16 +5,20 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0002_article_category_dislikearticle_likearticle_review_and_more'),
+        (
+            "news_app",
+            "0002_article_category_dislikearticle_likearticle_review_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='created',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="article",
+            name="created",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
     ]

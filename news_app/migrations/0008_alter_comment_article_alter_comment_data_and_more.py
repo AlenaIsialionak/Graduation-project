@@ -6,26 +6,33 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news_app', '0007_rename_review_comment'),
+        ("news_app", "0007_rename_review_comment"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='article',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='news_app.article'),
+            model_name="comment",
+            name="article",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comments",
+                to="news_app.article",
+            ),
         ),
         migrations.AlterField(
-            model_name='comment',
-            name='data',
+            model_name="comment",
+            name="data",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='comment',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to=settings.AUTH_USER_MODEL),
+            model_name="comment",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comments",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

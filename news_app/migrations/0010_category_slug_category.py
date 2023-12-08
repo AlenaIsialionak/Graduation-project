@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0009_alter_article_options'),
+        ("news_app", "0009_alter_article_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='category',
-            name='slug_category',
-            field=models.SlugField(blank=True, default='', max_length=30),
+            model_name="category",
+            name="slug_category",
+            field=models.SlugField(blank=True, default="", max_length=30),
         ),
     ]

@@ -1,12 +1,51 @@
-version: "3.9"
+#version: "3.9"
+#
+#services:
+#  db:
+#    volumes:
+#        - postgres_data:/Users/alyona99/Library/Containers/com.docker.docker/Data/vms/0
+#
+#    image: postgres
+#    container_name: django_container
+#    user: postgres
+#    environment:
+#        POSTGRES_NAME: postgres
+#        POSTGRES_USER: django_user
+#        POSTGRES_PASSWORD: 123456789
+#    ports:
+#      - "5432:5432"
+#
+#  web:
+#    build: .
+#    container_name: web_container
+#    command: python /news_site/manage.py runserver 0.0.0.0:8000
+#
+#    volumes:
+#      - .:/code
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - db
+#    environment:
+#      DATABASE_NAME: postgres
+#      DATABASE_USER: django_user
+#      DATABASE_PASSWORD: 123456789
+#      DATABASE_HOST: db
+#      DATABASE_PORT: 5432
+#
+#
+#volumes:
+#      postgres_data:
+
+
+version: "2.4"
 
 services:
-  db:
+  database_service:
     volumes:
-      - postgres_data::/var/lib/postgresql/data
-
+      - postgres_data:/var/lib/postgresql/data
     image: postgres
-    container_name: django_container
+    container_name: django_db_container
     user: postgres
     environment:
         POSTGRES_NAME: postgres
@@ -15,26 +54,26 @@ services:
     ports:
       - "5432:5432"
 
-  web:
+  django_service:
     build: .
-    container_name: web_container
-    command: python /news_site/manage.py runserver 0.0.0.0:8000
+    container_name: django_app_container
+    command: python src/manage.py runserver 0.0.0.0:8000
 
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - database_service
     environment:
       DATABASE_NAME: postgres
       DATABASE_USER: django_user
       DATABASE_PASSWORD: 123456789
-      DATABASE_URL: postgres://django_user:123456789@db/tms_django
+      DATABASE_HOST: database_service
+      DATABASE_PORT: 5432
 
 volumes:
-      postgres_data:
-
+  postgres_data:
 
 
 

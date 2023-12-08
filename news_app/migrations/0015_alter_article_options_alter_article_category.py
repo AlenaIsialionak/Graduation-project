@@ -5,19 +5,20 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0014_alter_category_options'),
+        ("news_app", "0014_alter_category_options"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='article',
-            options={'default_related_name': 'articles'},
+            name="article",
+            options={"default_related_name": "articles"},
         ),
         migrations.AlterField(
-            model_name='article',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='news_app.category'),
+            model_name="article",
+            name="category",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="news_app.category"
+            ),
         ),
     ]

@@ -5,15 +5,18 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0023_dictionary_language_translation'),
+        ("news_app", "0023_dictionary_language_translation"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='translation',
-            name='language',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='language_translate', to='news_app.language'),
+            model_name="translation",
+            name="language",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="language_translate",
+                to="news_app.language",
+            ),
         ),
     ]

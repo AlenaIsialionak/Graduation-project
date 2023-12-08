@@ -6,19 +6,38 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news_app', '0024_alter_translation_language'),
+        ("news_app", "0024_alter_translation_language"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Test',
+            name="Test",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.ManyToManyField(related_name='test', to=settings.AUTH_USER_MODEL)),
-                ('word', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='test', to='news_app.dictionary')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ManyToManyField(
+                        related_name="test", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+                (
+                    "word",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="test",
+                        to="news_app.dictionary",
+                    ),
+                ),
             ],
         ),
     ]

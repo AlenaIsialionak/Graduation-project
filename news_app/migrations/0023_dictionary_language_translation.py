@@ -6,36 +6,81 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news_app', '0022_alter_article_user'),
+        ("news_app", "0022_alter_article_user"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Dictionary',
+            name="Dictionary",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('word', models.CharField(max_length=90)),
-                ('user', models.ManyToManyField(related_name='words', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("word", models.CharField(max_length=90)),
+                (
+                    "user",
+                    models.ManyToManyField(
+                        related_name="words", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Language',
+            name="Language",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('language', models.CharField(max_length=50)),
-                ('abbreviation', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("language", models.CharField(max_length=50)),
+                ("abbreviation", models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
-            name='Translation',
+            name="Translation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('translation', models.CharField(blank=True, default='', max_length=100)),
-                ('language', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='words_dict', to='news_app.language')),
-                ('word', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='translations', to='news_app.dictionary')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "translation",
+                    models.CharField(blank=True, default="", max_length=100),
+                ),
+                (
+                    "language",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="words_dict",
+                        to="news_app.language",
+                    ),
+                ),
+                (
+                    "word",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="translations",
+                        to="news_app.dictionary",
+                    ),
+                ),
             ],
         ),
     ]

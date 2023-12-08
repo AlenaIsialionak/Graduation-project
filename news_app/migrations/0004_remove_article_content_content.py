@@ -5,22 +5,36 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news_app', '0003_article_created'),
+        ("news_app", "0003_article_created"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='article',
-            name='content',
+            model_name="article",
+            name="content",
         ),
         migrations.CreateModel(
-            name='Content',
+            name="Content",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('article', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='content', to='news_app.article')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", models.TextField()),
+                (
+                    "article",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="content",
+                        to="news_app.article",
+                    ),
+                ),
             ],
         ),
     ]

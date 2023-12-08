@@ -5,15 +5,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news_app', '0006_article_likes'),
+        ("news_app", "0006_article_likes"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Review',
-            new_name='Comment',
+            old_name="Review",
+            new_name="Comment",
         ),
     ]
